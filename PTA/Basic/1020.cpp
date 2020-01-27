@@ -1,62 +1,35 @@
-#include <iostream>
-#include <iomanip>
-
+/* case 3 无法通过 */
+#pragma warning(disable : 4996)
+#include <cstdio>
+#include <map>
 using namespace std;
 
-#define MAXSIZE 1001
+#define MAXN 1000
+int N, M;
+map<double, double, greater<double>> price_idx;
 
 int main()
 {
-  int N,D;
-  /*
-    mooncake[0]: tons
-    mooncake[1]: price
-    mooncake[2]: price/tons
-  */
-  double mooncake[MAXSIZE][3];
-  double total = 0;
+	double tmp, sum = 0;
+	double left[MAXN];
+	scanf("%d%d", &N, &M);
+	for (int i = 0; i < N; ++i) {
+		scanf("%lf", &tmp);
+		left[i] = tmp;
+	}
+	for (int i = 0; i < N; ++i) {
+		scanf("%lf", &tmp);
+		price_idx.insert({ tmp / left[i], left[i] });
+	}
+	for (auto it : price_idx) {
+		if (M < it.second) {
+			sum += it.first * M;
+			break;
+		}
+		sum += it.first * it.second;
+		M -= int(it.second);
+	}
+	printf("%.2lf", sum);
 
-  cin>>N>>D;
-  for(int i = 0; i < N; i++)
-    {
-      cin>>mooncake[i][0];
-    }
-  for(int i = 0; i < N; i++)
-    {
-      cin>>mooncake[i][1];
-      mooncake[i][2] = mooncake[i][1] / mooncake[i][0];
-    }
-
-  for(int i = 0; i < N; i++)
-    {
-      for(int j = i + 1; j < N; j++)
-        {
-          if(mooncake[i][2] < mooncake[j][2])
-            {
-              swap(mooncake[i][0],mooncake[j][0]);
-              swap(mooncake[i][1],mooncake[j][1]);
-              swap(mooncake[i][2],mooncake[j][2]);
-            }
-        }
-    }
-
-  int cursor = 0;
-  while(D && cursor < N)
-    {
-      if(mooncake[cursor][0] < D)
-        {
-          total += mooncake[cursor][1];
-          D -= mooncake[cursor][0];
-        }
-      else if(mooncake[cursor][0] > D)
-        {
-          total += mooncake[cursor][2] * D;
-          D = 0;
-        }
-      cursor++;
-    }
-
-  cout<<setprecision(2)<<fixed<<total;
-
-  return 0;
+	return 0;
 }
