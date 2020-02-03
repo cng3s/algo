@@ -1,0 +1,14 @@
+# cmake object files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# compile objects
+a.out
+*.gch
+*.o
+
+# clang-format files
+.clang-format
+.project_alt.json
