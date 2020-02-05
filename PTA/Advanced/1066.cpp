@@ -55,7 +55,6 @@ void R(struct node* &root)
 	struct node *tmp = root->l;
 	root->l = tmp->r;
 	tmp->r = root;
-	// 一定是先更新root再更新tmp
 	update_height(root);
 	update_height(tmp);
 	root = tmp;
@@ -80,7 +79,7 @@ void insert(struct node*& root, int v)
 		insert(root->l, v);
 		update_height(root);
 		if (get_balance_factor(root) == 2) {
-			if (get_balance_factor(root->l) == -1)// LR
+			if (get_balance_factor(root->l) == -1) // LR
 				L(root->l);
 			R(root);
 		}
@@ -97,21 +96,6 @@ struct node* create_avl(int data[], int n)
 	return root;
 }
 
-void level_traverse(struct node* root)
-{
-	queue<node*> q;
-	q.push(root);
-	while (!q.empty()) {
-		struct node *cur = q.front();
-		q.pop();
-		printf("%d ", cur->v);
-		if (cur->l)
-			q.push(cur->l);
-		if (cur->r)
-			q.push(cur->r);
-	}
-}
-
 int main()
 {
 	int i, n;
@@ -120,7 +104,7 @@ int main()
 	for (int i = 0; i < n; ++i)
 		scanf("%d", &data[i]);
 	struct node *root = create_avl(data, n);
-	level_traverse(root);
+	printf("%d", root->v);
 
 	return 0;
 }
