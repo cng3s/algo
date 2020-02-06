@@ -26,7 +26,7 @@ void adjust_down(int low, int high)
 void adjust_up(int low, int high)
 {
 	int i = high, j = i / 2;
-	while (i >= low) {
+	while (j >= low) {
 		if (heap[j] >= heap[i])
 			break;
 		swap(heap[j], heap[i]);
