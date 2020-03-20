@@ -8,6 +8,7 @@ Makefile
 a.out
 *.gch
 *.o
+a.exe
 
 # clang-format files
 .clang-format
