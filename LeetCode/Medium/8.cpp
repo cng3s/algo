@@ -1,3 +1,6 @@
+// 执行用时 :4 ms, 在所有 C++ 提交中击败了85.86% 的用户
+// 内存消耗 :6.2 MB, 在所有 C++ 提交中击败了80.00%的用户
+//
 class Solution {
 public:
     int myAtoi(string str) {
