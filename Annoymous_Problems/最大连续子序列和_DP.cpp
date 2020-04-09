@@ -1,3 +1,6 @@
+// 《算法笔记》 P430
+//
+
 #include <iostream>
 #include <algorithm>
 using namespace std;
@@ -14,8 +17,7 @@ void dp_push() {
 }
 
 int dp_pull( int idx ) {
-    if ( idx == 0 ) { return A[idx]; }
-    if ( dp[idx] != 0 ) { return dp[idx]; }
+    if ( dp[idx] != INT_MIN ) { return dp[idx]; }
     dp[idx] = max( A[idx], A[idx]+dp_pull(idx-1) );
     if ( dp[idx] > dp[maxidx_pull] ) { maxidx_pull = idx; }
     return dp[idx];
@@ -29,7 +31,8 @@ int main() {
     dp_push();
     cout << dp[maxidx_push] << endl;
 
-    fill( dp, dp+MAXN, 0 );
+    fill( dp, dp+MAXN, INT_MIN );
+    dp[0] = A[0];
     dp_pull( n );
     cout << dp[maxidx_pull] << endl;
 
