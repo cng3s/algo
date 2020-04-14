@@ -80,6 +80,7 @@ public:
         if ( followeesList.find( followeeId ) == followeesList.end() ) {
             followeesList.insert( {followeeId, true} );
         }
+
     }
     
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
