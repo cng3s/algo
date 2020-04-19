@@ -1,3 +1,7 @@
+// 执行用时 :888 ms, 在所有 C++ 提交中击败了100.00% 的用户
+// 内存消耗 :100.3 MB, 在所有 C++ 提交中击败了100.00%的用户
+//
+
 class Solution {
 public:
     vector<int> getTriggerTime(vector<vector<int>>& increase, vector<vector<int>>& requirements) {
