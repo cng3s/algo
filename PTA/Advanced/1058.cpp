@@ -22,25 +22,16 @@ int main()
     }
   }
 
-  int *p = ipt[0], *a = ipt[1], paysucc = true;
-  for (int i = 0; i < 2; ++i) {
-    if (ipt[0][i] > ipt[1][i]) {
-      swap(p, a);
-      paysucc = false;
-      break;
-    } else if (ipt[0][i] < ipt[1][i])
-      break;
-  }
-  for (int i = 2; i > -1; --i) {
-    res[i] = a[i] - p[i];
-    if (res[i] < 0 and i != 0) {
-      res[i] += change[i];
-      a[i-1] -= 1;
+  int cf = 0;
+  for (int i = 2; i >= 0; --i) {
+    res[i] = ipt[0][i] + ipt[1][i] + cf;
+    cf = 0;
+    if (i != 0 and res[i] >= change[i]) {
+      res[i] %= change[i];
+      cf = 1;
     }
   }
-  
-  if (!paysucc)
-    printf("-");
+
   for (int i = 0; i < 3; ++i) {
     printf("%d", res[i]);
     if (i != 2)
