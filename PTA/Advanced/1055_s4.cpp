@@ -38,7 +38,8 @@ int main() {
     scanf("%d%d%d", &M, &Amin, &Amax);
     printf("Case #%d:\n", case_cnt);
     for (auto &e : valid_people) {
-      if (e.age <= Amax && e.age >= Amin && print_cnt != M) {
+      if (print_cnt == M) break;
+      if (e.age <= Amax && e.age >= Amin) {
         printf("%s %d %d\n", e.name, e.age, e.worth);
         ++print_cnt;
       }
