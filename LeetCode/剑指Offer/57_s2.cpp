@@ -1,30 +1,17 @@
-// 执行用时：0 ms, 在所有 C++ 提交中击败了100.00% 的用户
-// 内存消耗：6.4 MB, 在所有 C++ 提交中击败了99.02% 的用户
+// 执行用时：188 ms, 在所有 C++ 提交中击败了96.42% 的用户
+// 内存消耗：98.2 MB, 在所有 C++ 提交中击败了69.68% 的用户
 
 class Solution {
 public:
-    vector<vector<int>> findContinuousSequence(int target) {
-        vector<vector<int>> ans;
-        vector<int> subans;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int l = 0, r = nums.size() - 1;
 
-        for (int left = 1, right = 2; left < right;) {
-            int sum = (left + right) * (right - left + 1) / 2;
-            if (sum == target) {
-                subans.clear();
-                for (int i = left; i <= right; ++i) {
-                    subans.emplace_back(i);
-                }
-                ans.emplace_back(subans);
-                ++left;
-            }
-            else if (sum < target) {
-                ++right;
-            }
-            else if (sum > target) {
-                ++left;
-            }
+        while (l < r) {
+            int sum = nums[l] + nums[r];
+            if (sum < target) { ++l; }
+            else if (sum > target) { --r; }
+            else { return {nums[l], nums[r]}; }
         }
-
-        return ans;
+        return {};
     }
 };
